@@ -66,8 +66,8 @@ const RepositoryList = () => {
             <Text>Desc: { item.description }</Text>
             <Text>Language: { item.language }</Text>
             <Text>Forked: { item.forksCount }</Text>
-            <Text>Rating: { item.ratingAverage }</Text>
             <Text>Reviews: { item.reviewCount }</Text>
+            <Text>Rating: { item.ratingAverage }</Text>
         </View>
     }
     />
