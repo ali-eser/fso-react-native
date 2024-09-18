@@ -4,6 +4,10 @@ const styles = StyleSheet.create({
   separator: {
     height: 10,
   },
+  view : {
+    padding: 20,
+    
+  }
 });
 
 const repositories = [
@@ -61,7 +65,7 @@ const RepositoryList = () => {
       data={repositories}
       ItemSeparatorComponent={ItemSeparator}
       renderItem={({ item }) =>
-        <View>
+        <View style={styles.view}>
             <Text>Name: { item.fullName }</Text>
             <Text>Desc: { item.description }</Text>
             <Text>Language: { item.language }</Text>
