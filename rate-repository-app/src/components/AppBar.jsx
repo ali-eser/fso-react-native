@@ -14,7 +14,9 @@ const styles = StyleSheet.create({
   text: {
     color: "whitesmoke",
     marginRight: 10,
-    marginLeft: 10
+    marginLeft: 10,
+    paddingTop: 10,
+    paddingBottom: 10
   },
   pressable: {
     flexDirection: "row",
@@ -29,16 +31,16 @@ const AppBar = () => {
         <Pressable style={styles.pressable}>
             <Link to={"/"}>
                 <Text 
-                style={styles.text}
-                fontWeight={"bold"}
+                    style={styles.text}
+                    fontWeight={"bold"}
                 >
                     Repositories
                 </Text>
             </Link>
             <Link to={"/signin"}>
                 <Text 
-                style={styles.text}
-                fontWeight={"bold"}
+                    style={styles.text}
+                    fontWeight={"bold"}
                 >
                     Sign in
                 </Text>
