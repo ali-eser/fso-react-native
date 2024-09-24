@@ -1,4 +1,4 @@
-import { View, StyleSheet, Pressable } from 'react-native';
+import { View, StyleSheet, Pressable, ScrollView } from 'react-native';
 import Constants from 'expo-constants';
 import Text from './Text';
 import { Link } from 'react-router-native';
@@ -9,35 +9,44 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     paddingLeft: 10,
     backgroundColor: "#24292e",
-    height: Constants.statusBarHeight * 1.2
+    height: Constants.statusBarHeight * 1.2,
   },
   text: {
-    color: "whitesmoke"
+    color: "whitesmoke",
+    marginRight: 10,
+    marginLeft: 10
+  },
+  pressable: {
+    flexDirection: "row",
+    alignItems: "center"
   }
 });
 
 const AppBar = () => {
-  return <View style={styles.container}>{
-    <Pressable>
-        <Link to={"/"}>
-            <Text 
-            style={styles.text}
-            fontWeight={"bold"}
-            >
-                Repositories
-            </Text>
-        </Link>
-        <Link to={"/signin"}>
-            <Text 
-            style={styles.text}
-            fontWeight={"bold"}
-            >
-                Sign in
-            </Text>
-        </Link>
-    </Pressable>
-
-  }</View>;
+  return (
+  <View style={styles.container}>
+    <ScrollView horizontal>
+        <Pressable style={styles.pressable}>
+            <Link to={"/"}>
+                <Text 
+                style={styles.text}
+                fontWeight={"bold"}
+                >
+                    Repositories
+                </Text>
+            </Link>
+            <Link to={"/signin"}>
+                <Text 
+                style={styles.text}
+                fontWeight={"bold"}
+                >
+                    Sign in
+                </Text>
+            </Link>
+        </Pressable>
+    </ScrollView>
+  </View>
+  );
 };
 
 export default AppBar;
