@@ -1,5 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, Pressable, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { NativeRouter } from 'react-router-native';
+
 import Main from './src/components/Main';
 
 const App = () => {
