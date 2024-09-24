@@ -4,10 +4,11 @@ import Text from './Text';
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: Constants.statusBarHeight,
+    marginTop: 10,
+    justifyContent: "space-around",
     paddingLeft: 10,
     backgroundColor: "#24292e",
-    paddingBottom: Constants.statusBarHeight
+    height: Constants.statusBarHeight * 1.2
   },
   text: {
     color: "whitesmoke"
@@ -17,9 +18,10 @@ const styles = StyleSheet.create({
 const AppBar = () => {
   return <View style={styles.container}>{
     <Pressable>
-        <Text
-        color={"primary"}
-        fontWeight={"bold"}>
+        <Text 
+            style={styles.text}
+            fontWeight={"bold"}    
+        >
             Repositories
         </Text>
     </Pressable>
