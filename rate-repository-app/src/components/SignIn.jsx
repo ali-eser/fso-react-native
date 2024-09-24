@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     }
 });
 
-const onSubmit = (value) => {
+const onSubmit = (value) => {
     console.log(value);
 };
 
