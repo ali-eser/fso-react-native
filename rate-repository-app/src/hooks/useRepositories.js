@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import { GET_REPOSITORIES } from '../graphql/queries';
 
 const useRepositories = () => {
-  const [repositories, setRepositories] = useState();
+  const [repos, setRepos] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
   const { loading, error, data } = useQuery(GET_REPOSITORIES, {
@@ -15,14 +15,14 @@ const useRepositories = () => {
     if (error) {
 			console.log(error);
 		}
-    setRepositories(data.repositories);
+    setRepos(data.repositories);
   };
 
   useEffect(() => {
     fetchRepositories();
   }, []);
 
-  return { repositories, loading, refetch: fetchRepositories };
+  return { repos, loading, refetch: fetchRepositories };
 };
 
 export default useRepositories;
