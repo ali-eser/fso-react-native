@@ -15,6 +15,7 @@ const useRepositories = () => {
     if (error) {
 			console.log(error);
 		}
+    console.log(data);
     setRepos(data.repositories);
   };
 
