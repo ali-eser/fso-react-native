@@ -1,4 +1,5 @@
 import { useFormik } from "formik";
+import { useNavigate } from "react-router-native";
 import { Pressable, StyleSheet, TextInput, View  } from "react-native";
 import Text from "./Text";
 import * as yup from "yup";
@@ -43,16 +44,17 @@ const initialValues = {
 
 const SignIn = () => {
   const [signIn, result] = useSignIn();
+  const navigate = useNavigate();
 
   const onSubmit = async (values) => {
     const { username, password } = values;
     try {
       await signIn({ username, password });
       console.log(result.data);
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
-
   };
 
   const formik = useFormik({
