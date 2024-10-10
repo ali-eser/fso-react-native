@@ -1,7 +1,10 @@
 import { View, StyleSheet, Pressable, ScrollView } from 'react-native';
 import Constants from 'expo-constants';
 import Text from './Text';
-import { Link } from 'react-router-native';
+import { Link, useNavigate } from 'react-router-native';
+
+import useMe from '../hooks/useMe';
+import useSignOut from '../hooks/useSignOut';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,29 +28,59 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
+  const navigate = useNavigate();
+  const [meData] = useMe();
+  const [signOut] = useSignOut();
+  console.log("meData: ", meData);
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
-  <View style={styles.container}>
-    <ScrollView horizontal>
-        <Pressable style={styles.pressable}>
-            <Link to={"/"}>
-                <Text 
+    <View style={styles.container}>
+      <ScrollView horizontal>
+          <Pressable style={styles.pressable}>
+              <Link to={"/"}>
+                  <Text 
                     style={styles.text}
                     fontWeight={"bold"}
-                >
+                  >
                     Repositories
-                </Text>
-            </Link>
-            <Link to={"/signin"}>
-                <Text 
+                  </Text>
+              </Link>
+              {!meData && (
+                <Link to={"/signin"}>
+                  <Text 
                     style={styles.text}
                     fontWeight={"bold"}
-                >
+                  >
                     Sign in
-                </Text>
-            </Link>
-        </Pressable>
-    </ScrollView>
-  </View>
+                  </Text>
+                </Link>
+              )}
+          </Pressable>
+          {meData && (
+            <Pressable 
+              style={styles.pressable}
+              onPress={handleSignOut}
+            >
+              <Text 
+                style={styles.text}
+                fontWeight={"bold"}
+              >
+                Sign out
+              </Text>
+            </Pressable>
+
+          )}
+      </ScrollView>
+    </View>
   );
 };
 
