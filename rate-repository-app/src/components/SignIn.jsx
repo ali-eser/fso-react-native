@@ -43,14 +43,13 @@ const initialValues = {
 };
 
 const SignIn = () => {
-  const [signIn, result] = useSignIn();
+  const [signIn] = useSignIn();
   const navigate = useNavigate();
 
   const onSubmit = async (values) => {
     const { username, password } = values;
     try {
       await signIn({ username, password });
-      console.log(result.data);
       navigate("/");
     } catch (err) {
       console.log(err);
