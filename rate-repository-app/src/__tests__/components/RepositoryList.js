@@ -39,7 +39,7 @@ const RepositoryItem = ({ repositories }) => {
           </View>
         </View>
       </View>
-    } 
+    }
     />
   )
 };
