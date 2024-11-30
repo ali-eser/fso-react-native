@@ -44,11 +44,11 @@ const styles = StyleSheet.create({
 const ItemSeparator = () => <View style={styles.separator} />;
 
 const RepositoryList = () => {
-    const { repos } = useRepositories();
+  const { repos } = useRepositories();
 
-    const repositoryNodes = repos
-        ? repos.edges.map(edge => edge.node)
-        : [];
+  const repositoryNodes = repos
+    ? repos.edges.map(edge => edge.node)
+    : [];
 
   return (
     <FlatList
