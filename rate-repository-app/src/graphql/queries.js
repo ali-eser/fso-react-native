@@ -21,7 +21,7 @@ export const GET_REPOSITORIES = gql`
 
 export const GET_ONE = gql`
   query {
-    repository(id: String!) {
+    repository(id: String) {
       description
       forksCount
       fullName
