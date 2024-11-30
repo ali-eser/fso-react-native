@@ -1,8 +1,7 @@
-import { Image, View, StyleSheet } from 'react-native';
+import { Image, View, Button, StyleSheet } from 'react-native';
 import {useParams} from "react-router-native";
 import useSingleRepo from "../hooks/useSingleRepo";
 import Text from './Text';
-import * as Linking from 'expo-linking';
 
 const formatter = (n) => {
   return Math.abs(n) > 999 ? (Math.abs(n) / 1000).toFixed(1) + "k" : n
@@ -85,7 +84,9 @@ const RepositoryItem = () => {
           <Text>Rating</Text>
         </View>
         <View style={styles.button}>
-          
+          <Button
+            title={"Open in GitHub"}
+          />
         </View>
       </View>
     </View>
