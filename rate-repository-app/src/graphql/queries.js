@@ -19,6 +19,16 @@ export const GET_REPOSITORIES = gql`
   }
 `;
 
+export const GET_ONE = gql`
+  query {
+    repository(id: String!) {
+      id
+      fullName
+      url
+    }
+  }
+`
+
 export const GET_ME = gql`
   query {
     me {
