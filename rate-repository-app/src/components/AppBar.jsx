@@ -31,7 +31,6 @@ const AppBar = () => {
   const navigate = useNavigate();
   const [meData] = useMe();
   const [signOut] = useSignOut();
-  console.log("meData: ", meData);
 
   const handleSignOut = async () => {
     try {
