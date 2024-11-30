@@ -1,4 +1,4 @@
-import { Image, View, Button, StyleSheet } from 'react-native';
+import { FlatList, Image, View, Button, StyleSheet } from 'react-native';
 import {useParams} from "react-router-native";
 import useSingleRepo from "../hooks/useSingleRepo";
 import Text from './Text';
@@ -49,13 +49,9 @@ const styles = StyleSheet.create({
   }
 });
 
-const RepositoryItem = () => {
-  let params = useParams();
-  const { singleRepo, loading, error } = useSingleRepo(params.id);
+const ItemSeparator = () => <View style={styles.separator} />;
 
-  if (loading || !singleRepo) return <Text>Loading...</Text>;
-  if (error) return <Text>Error</Text>;
-
+const RepoInfo = ({ singleRepo }) => {
   return (
     <View style={styles.view}>
       <View style={styles.imgDesc}>
@@ -89,6 +85,34 @@ const RepositoryItem = () => {
           />
         </View>
       </View>
+    </View>
+  )
+}
+
+const RepositoryItem = () => {
+  let params = useParams();
+  const { singleRepo, loading, error } = useSingleRepo(params.id);
+
+  const reviewNodes = singleRepo
+    ? singleRepo.reviews.edges.map(edge => edge.node)
+    : [];
+
+  if (loading || !singleRepo) return <Text>Loading...</Text>;
+  if (error) return <Text>Error</Text>;
+
+  return (
+    <View>
+      <FlatList
+        data={reviewNodes}
+        ItemSeparatorComponent={ItemSeparator}
+        ListHeaderComponent={<RepoInfo singleRepo={singleRepo} />}
+        renderItem={({ item } ) =>
+          <View>
+            <Text fontWeight={"bold"}>{`${item.rating} ${item.user.username}`}</Text>
+            <Text>{item.createdAt.slice(0,10)}</Text>
+            <Text>{ item.text }</Text>
+          </View>
+      }/>
     </View>
   )
 }
