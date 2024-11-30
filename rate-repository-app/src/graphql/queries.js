@@ -32,6 +32,20 @@ export const GET_ONE = gql`
       reviewCount
       stargazersCount
       url
+      reviews {
+        edges {
+          node {
+            id
+            text
+            rating
+            createdAt
+            user {
+              id
+              username
+            }
+          }
+        }
+      }
     }
   }
 `
