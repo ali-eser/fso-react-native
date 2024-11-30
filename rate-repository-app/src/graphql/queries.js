@@ -5,6 +5,7 @@ export const GET_REPOSITORIES = gql`
     repositories {
       edges {
         node {
+          id
           description
           forksCount
           fullName
@@ -20,8 +21,8 @@ export const GET_REPOSITORIES = gql`
 `;
 
 export const GET_ONE = gql`
-  query {
-    repository(id: String) {
+  query GetOne($id: ID!) {
+    repository(id: $id) {
       description
       forksCount
       fullName
