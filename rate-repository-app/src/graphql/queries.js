@@ -22,8 +22,14 @@ export const GET_REPOSITORIES = gql`
 export const GET_ONE = gql`
   query {
     repository(id: String!) {
-      id
+      description
+      forksCount
       fullName
+      language
+      ownerAvatarUrl
+      ratingAverage
+      reviewCount
+      stargazersCount
       url
     }
   }
