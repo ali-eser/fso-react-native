@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     borderColor: "grey",
     height: 50,
     margin: 10,
-    adding: 10
+    padding: 10
   },
   textInputError: {
     borderColor: "#d73a4a"
@@ -87,8 +87,8 @@ const SignIn = () => {
         onPress={formik.handleSubmit}
         style={styles.pressable}
       >
-      <Text>Sign in</Text>
-        </Pressable>
+        <Text>Sign in</Text>
+      </Pressable>
       </View>
   );
 };
