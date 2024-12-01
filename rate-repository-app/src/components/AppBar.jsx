@@ -65,18 +65,20 @@ const AppBar = () => {
               )}
           </Pressable>
           {meData && (
-            <Pressable 
-              style={styles.pressable}
-              onPress={handleSignOut}
-            >
-              <Text 
-                style={styles.text}
-                fontWeight={"bold"}
-              >
-                Sign out
-              </Text>
-            </Pressable>
-
+            <View>
+              <Pressable style={styles.pressable}>
+                <Link to={"/createReview"}>
+                  <Text style={styles.text} fontWeight={"bold"}>
+                    Create Review
+                  </Text>
+                </Link>
+              </Pressable>
+              <Pressable style={styles.pressable} onPress={handleSignOut}>
+                <Text style={styles.text} fontWeight={"bold"}>
+                  Sign out
+                </Text>
+              </Pressable>
+            </View>
           )}
       </ScrollView>
     </View>
