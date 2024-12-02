@@ -70,6 +70,7 @@ const CreateReview = () => {
       />
       <TextInput
         style={styles.textInput}
+        multiline={true}
         placeholder={"Review"}
       />
     </View>
