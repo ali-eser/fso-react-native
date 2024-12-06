@@ -11,18 +11,21 @@ const useSingleRepo = (repoId) => {
     variables: { id: repoId },
   });
 
-  const fetchRepository= async () => {
-    if (error) {
-      console.log(error);
-    }
-    setSingleRepo(data.repository);
-  };
-
   useEffect(() => {
-    fetchRepository();
-  }, [repoId, loading, singleRepo]);
+    const fetchRepository= async () => {
+      try {
+        if (data?.repository) {
+          setSingleRepo(data.repository);
+        }
+      } catch (err) {
+        console.error("Error fetching repositories:", err);
+      }
+    };
 
-  return { singleRepo, error, loading };
+    fetchRepository();
+  }, [data]);
+
+  return { singleRepo: singleRepo || null, error, loading };
 }
 
 export default useSingleRepo;
