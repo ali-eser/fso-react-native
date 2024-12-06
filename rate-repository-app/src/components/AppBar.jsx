@@ -54,14 +54,24 @@ const AppBar = () => {
                   </Text>
               </Link>
               {!meData && (
-                <Link to={"/signin"}>
-                  <Text 
-                    style={styles.text}
-                    fontWeight={"bold"}
-                  >
-                    Sign in
-                  </Text>
-                </Link>
+                <View>
+                  <Link to={"/signin"}>
+                    <Text
+                      style={styles.text}
+                      fontWeight={"bold"}
+                    >
+                      Sign in
+                    </Text>
+                  </Link>
+                  <Link to={"/signup"}>
+                    <Text
+                      style={styles.text}
+                      fontWeight={"bold"}
+                    >
+                      Sign up
+                    </Text>
+                  </Link>
+                </View>
               )}
           </Pressable>
           {meData && (
