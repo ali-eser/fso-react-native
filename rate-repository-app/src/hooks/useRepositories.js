@@ -4,9 +4,10 @@ import { useQuery } from '@apollo/client';
 import { GET_REPOSITORIES } from '../graphql/queries';
 
 const useRepositories = (order, direction, keyword) => {
+
   const [repos, setRepos] = useState();
 
-  const { loading, error, data } = useQuery(GET_REPOSITORIES, {
+  const { loading, error, data, refetch } = useQuery(GET_REPOSITORIES, {
     variables: {
       orderBy: order,
       orderDirection: direction,
@@ -15,18 +16,21 @@ const useRepositories = (order, direction, keyword) => {
     fetchPolicy: "cache-and-network"
   });
 
-  const fetchRepositories = async () => {
-    if (error) {
-			console.log(error);
-		}
-    setRepos(data.repositories);
-  };
-
   useEffect(() => {
-    fetchRepositories();
-  }, []);
+    const fetchRepositories = async () => {
+      try {
+        if (data?.repositories) {
+          setRepos(data.repositories);
+        }
+      } catch (err) {
+        console.error("Error fetching repositories:", err);
+      }
+    };
 
-  return { repos, loading, refetch: fetchRepositories };
+    fetchRepositories();
+  }, [data]);
+
+  return { repos: repos || null, loading, error, refetch };
 };
 
 export default useRepositories;
