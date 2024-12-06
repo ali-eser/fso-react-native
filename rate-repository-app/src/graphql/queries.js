@@ -32,7 +32,7 @@ export const GET_ONE = gql`
       reviewCount
       stargazersCount
       url
-      reviews {
+      reviews($first: Int, $after: String) {
         edges {
           node {
             id
@@ -44,6 +44,7 @@ export const GET_ONE = gql`
               username
             }
           }
+          cursor
         }
       }
     }
