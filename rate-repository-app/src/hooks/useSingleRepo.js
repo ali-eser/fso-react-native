@@ -12,7 +12,7 @@ const useSingleRepo = (repoId) => {
   });
 
   useEffect(() => {
-    const fetchRepository= async () => {
+    const fetchRepository = async () => {
       try {
         if (data?.repository) {
           setSingleRepo(data.repository);
