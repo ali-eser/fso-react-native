@@ -9,10 +9,10 @@ const styles = StyleSheet.create({
     height: 10,
     backgroundColor: "whitesmoke"
   }
-})
+});
+
 const  MyReviews = () => {
   const { meData, error, refetch, loading } = useMe(true);
-  console.log(meData);
 
   useEffect(() => {
     refetch();
