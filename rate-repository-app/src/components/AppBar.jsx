@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
 
 const AppBar = () => {
   const navigate = useNavigate();
-  const [meData] = useMe();
+  const {meData} = useMe(false);
   const [signOut] = useSignOut();
 
   const handleSignOut = async () => {
@@ -54,7 +54,7 @@ const AppBar = () => {
                   </Text>
               </Link>
               {!meData && (
-                <View>
+                <>
                   <Link to={"/signin"}>
                     <Text
                       style={styles.text}
@@ -71,15 +71,22 @@ const AppBar = () => {
                       Sign up
                     </Text>
                   </Link>
-                </View>
+                </>
               )}
           </Pressable>
           {meData && (
-            <View>
+            <>
               <Pressable style={styles.pressable}>
                 <Link to={"/createReview"}>
                   <Text style={styles.text} fontWeight={"bold"}>
                     Create Review
+                  </Text>
+                </Link>
+              </Pressable>
+              <Pressable style={styles.pressable}>
+                <Link to={"/myReviews"}>
+                  <Text style={styles.text} fontWeight={"bold"}>
+                    My Reviews
                   </Text>
                 </Link>
               </Pressable>
@@ -88,7 +95,7 @@ const AppBar = () => {
                   Sign out
                 </Text>
               </Pressable>
-            </View>
+            </>
           )}
       </ScrollView>
     </View>
