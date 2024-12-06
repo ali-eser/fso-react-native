@@ -3,10 +3,13 @@ import { useQuery } from "@apollo/client";
 
 import { GET_ME } from "../graphql/queries";
 
-const useMe = () => {
+const useMe = (includeReviews) => {
   const [meData, setMeData] = useState(null);
 
-  const { error, data } = useQuery(GET_ME, {
+  const { error, data, loading, refetch } = useQuery(GET_ME, {
+    variables: {
+      includeReviews: includeReviews
+    },
     fetchPolicy: "network-only"
   });
 
@@ -20,7 +23,7 @@ const useMe = () => {
     }
   }, [data, error]);
 
-  return [meData];
+  return { meData, loading, error, refetch };
 };
 
 export default useMe;
