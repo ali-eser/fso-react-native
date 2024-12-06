@@ -6,7 +6,7 @@ import { GET_ONE } from '../graphql/queries'
 const useSingleRepo = (repoId) => {
   const [singleRepo, setSingleRepo] = useState();
 
-  const { loading, error, data } = useQuery(GET_ONE, {
+  const { loading, error, data, fetchMore } = useQuery(GET_ONE, {
     fetchPolicy: 'network-only',
     variables: { id: repoId },
   });
@@ -25,7 +25,7 @@ const useSingleRepo = (repoId) => {
     fetchRepository();
   }, [data]);
 
-  return { singleRepo: singleRepo || null, error, loading };
+  return { singleRepo: singleRepo || null, error, loading, fetchMore };
 }
 
 export default useSingleRepo;
