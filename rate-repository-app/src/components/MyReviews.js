@@ -1,5 +1,4 @@
 import { FlatList, Image, View, Button, StyleSheet } from 'react-native';
-import {useParams} from "react-router-native";
 import useMe from "../hooks/useMe";
 import Text from './Text';
 import {useEffect} from "react";
