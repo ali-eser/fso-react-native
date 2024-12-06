@@ -2,6 +2,7 @@ import { FlatList, Image, View, Button, StyleSheet } from 'react-native';
 import {useParams} from "react-router-native";
 import useSingleRepo from "../hooks/useSingleRepo";
 import Text from './Text';
+import {useEffect, useState} from "react";
 
 const formatter = (n) => {
   return Math.abs(n) > 999 ? (Math.abs(n) / 1000).toFixed(1) + "k" : n
@@ -91,11 +92,31 @@ const RepoInfo = ({ singleRepo }) => {
 
 const RepositoryItem = () => {
   let params = useParams();
-  const { singleRepo, loading, error } = useSingleRepo(params.id);
+  const [reviews, setReviews] = useState([]);
+
+  const { singleRepo, fetchMore, loading, error } = useSingleRepo(params.id);
 
   const reviewNodes = singleRepo
     ? singleRepo.reviews.edges.map(edge => edge.node)
     : [];
+
+  useEffect(() => {
+    if (singleRepo) {
+      const newReviews = singleRepo.reviews.edges.map((edge) => edge.node);
+      setReviews((prevReviews) => [...prevReviews, ...newReviews]);
+    }
+  }, [singleRepo]);
+
+  const loadMoreReviews = () => {
+
+    fetchMore({
+      variables: {
+        id: singleRepo.reviews.id,
+        first: 10,
+        after: singleRepo.reviews.cursor,
+      },
+    }).then(response => {console.log(response)})
+  };
 
   if (loading || !singleRepo) return <Text>Loading...</Text>;
   if (error) return <Text>Error</Text>;
@@ -104,6 +125,8 @@ const RepositoryItem = () => {
     <View>
       <FlatList
         data={reviewNodes}
+        onEndReached={loadMoreReviews}
+        onEndReachedThreshold={0.5}
         ItemSeparatorComponent={ItemSeparator}
         ListHeaderComponent={<RepoInfo singleRepo={singleRepo} />}
         renderItem={({ item } ) =>
